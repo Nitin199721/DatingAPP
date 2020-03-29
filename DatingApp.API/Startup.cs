@@ -85,12 +85,15 @@ namespace DatingApp.API
 
             app.UseRouting();
             app.UseAuthentication();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
            // seeder.SeedUsers();
             app.UseCors(x =>  x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
              app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
            
         }
